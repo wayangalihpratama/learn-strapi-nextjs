@@ -1,14 +1,13 @@
-import Head from "next/head";
+import Seo from "./Seo";
+import Link from "next/link";
 
-export default function Layout({ children, globalData }) {
-  const { siteName = "Digital Tourism Hub" } = globalData?.attributes || {};
+export default function Layout({ children, globalData, seo }) {
+  const { siteName = "Digital Tourism Hub", seo: globalSeo } =
+    globalData?.attributes || {};
 
   return (
     <>
-      <Head>
-        <title>{siteName}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
+      <Seo seo={seo} globalSeo={globalSeo} siteName={siteName} />
       <div
         className="min-h-screen bg-background text-foreground selection:bg-sky-accent selection:text-white"
         style={{
@@ -22,49 +21,49 @@ export default function Layout({ children, globalData }) {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center">
-                <a
+                <Link
                   href="/"
                   className="text-xl font-serif font-bold tracking-tight text-foreground transition-opacity hover:opacity-80"
                 >
                   {siteName}
-                </a>
+                </Link>
               </div>
               <nav className="hidden md:block">
                 <ul className="flex items-center space-x-8 text-sm font-medium">
                   <li>
-                    <a
+                    <Link
                       href="/"
                       className="text-foreground/70 transition-colors hover:text-sky-accent"
                     >
                       Home
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link
                       href="/attractions"
                       className="text-foreground/70 transition-colors hover:text-sky-accent"
                     >
                       Attractions
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link
                       href="/market"
                       className="text-foreground/70 transition-colors hover:text-sky-accent"
                     >
                       Market
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </nav>
               <div className="flex items-center space-x-4">
-                <a
+                <Link
                   href="/book"
                   className="rounded-full bg-sky-accent px-5 py-2 text-sm font-medium text-white transition-all hover:bg-sky-accent/90 active:scale-95 shadow-sm"
                   style={{ backgroundColor: "var(--sky-accent)" }}
                 >
                   Explore Now
-                </a>
+                </Link>
                 {/* Mobile Menu Icon Placeholder */}
                 <button className="md:hidden text-foreground">
                   <svg

@@ -18,6 +18,8 @@ This PRD defines a scalable, content-driven tourism platform template. The goal 
 - **[MUST]** Define `Product` Collection Type (Name, Price, Description, Images, Inquiry Link).
 - **[MUST]** Define `Article` Collection Type (Title, Content, Author, Banner Image).
 - **[SHOULD]** Implement a `Global` Single Type for site metadata (Logo, Village Name, Footer).
+- **[SHOULD]** Define an `SEO Component` to attach metadata strictly configurable per page/entry.
+- **[COULD]** Multi-Village Support (`Village` Collection Type) linking all content to support multi-tenancy.
 
 ### 3.2 Frontend (Next.js)
 - **[MUST]** Home Page with Dynamic Zones (Hero, Featured Attractions, Recent News).

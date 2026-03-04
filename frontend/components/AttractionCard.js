@@ -10,7 +10,7 @@ export default function AttractionCard({ attraction }) {
     : "https://via.placeholder.com/600x400?text=No+Image";
 
   return (
-    <div className="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-mist-grey bg-white transition-all duration-500 hover:shadow-2xl hover:shadow-sky-accent/5">
+    <div className="group flex h-full flex-col overflow-hidden rounded-4xl border border-mist-grey bg-white transition-all duration-500 hover:shadow-2xl hover:shadow-sky-accent/5">
       <div className="relative h-72 w-full overflow-hidden">
         <Image
           src={imageUrl}
@@ -23,7 +23,7 @@ export default function AttractionCard({ attraction }) {
           {category}
         </div>
       </div>
-      <div className="flex flex-grow flex-col p-8">
+      <div className="flex grow flex-col p-8">
         <h3 className="mb-3 text-2xl font-bold tracking-tight text-foreground transition-colors group-hover:text-sky-accent">
           {name}
         </h3>

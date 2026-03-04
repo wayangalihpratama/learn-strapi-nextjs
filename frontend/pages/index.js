@@ -1,10 +1,8 @@
-import Head from "next/head";
-import Layout from "../components/Layout";
 import BlockRenderer from "../components/BlockRenderer";
 import { fetchFromStrapi } from "../lib/strapi";
 
-export default function Home({ global, homepage }) {
-  if (!global?.data) {
+export default function Home({ globalData, homepage }) {
+  if (!globalData?.data) {
     return (
       <div className="flex min-h-screen items-center justify-center p-8 text-center">
         <div>
@@ -16,54 +14,46 @@ export default function Home({ global, homepage }) {
           </p>
           <div className="p-4 bg-amber-50 rounded-lg text-amber-800 text-sm">
             Check if your Strapi backend is running and you have published the
-            "Global" and "Homepage" settings.
+            &quot;Global&quot; and &quot;Homepage&quot; settings.
           </div>
         </div>
       </div>
     );
   }
 
-  const { siteName, siteDescription } = global.data.attributes;
+  const { siteName } = globalData.data.attributes;
   const blocks = homepage?.data?.attributes?.blocks;
 
   return (
-    <Layout global={global}>
-      <Head>
-        <title>
-          {siteName} | {siteDescription}
-        </title>
-        <meta name="description" content={siteDescription} />
-      </Head>
-
-      <main className="min-h-screen">
-        {/* Modular Page Content */}
-        {blocks ? (
-          <BlockRenderer blocks={blocks} />
-        ) : (
-          <div className="py-20 text-center">
-            <h2 className="text-2xl text-gray-500">Welcome to {siteName}</h2>
-            <p className="mt-4">
-              Please add content blocks in the Strapi admin to get started.
-            </p>
-          </div>
-        )}
-      </main>
-    </Layout>
+    <main className="min-h-screen">
+      {/* Modular Page Content */}
+      {blocks ? (
+        <BlockRenderer blocks={blocks} />
+      ) : (
+        <div className="py-20 text-center">
+          <h2 className="text-2xl text-gray-500">Welcome to {siteName}</h2>
+          <p className="mt-4">
+            Please add content blocks in the Strapi admin to get started.
+          </p>
+        </div>
+      )}
+    </main>
   );
 }
 
 export async function getStaticProps() {
   const [globalRes, homepageRes] = await Promise.all([
-    fetchFromStrapi("/global?populate=*"),
+    fetchFromStrapi("/global?populate[logo]=*&populate[seo][populate]=*"),
     fetchFromStrapi(
-      "/homepage?populate[blocks][on][sections.hero][populate]=*&populate[blocks][on][sections.info-block][populate]=*&populate[blocks][on][sections.featured-grid][populate]=*",
+      "/homepage?populate[blocks][on][sections.hero][populate]=*&populate[blocks][on][sections.info-block][populate]=*&populate[blocks][on][sections.featured-grid][populate]=*&populate[seo][populate]=*",
     ),
   ]);
 
   return {
     props: {
-      global: globalRes,
+      globalData: globalRes,
       homepage: homepageRes,
+      seo: homepageRes?.data?.attributes?.seo || null,
     },
     revalidate: 60,
   };

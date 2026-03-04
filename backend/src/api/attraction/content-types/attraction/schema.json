@@ -41,6 +41,11 @@
     },
     "price_entry": {
       "type": "decimal"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
     }
   }
 }

@@ -30,3 +30,8 @@ The design follows a **minimal, clean, and modern** aesthetic. It prioritizes **
 2.  **Adaptive Imagery**: Hero images must use `object-fit: cover` and provide optimized versions for mobile.
 3.  **Touch Targets**: Buttons and interactive elements must have a minimum height of 44px for mobile accessibility.
 4.  **Fluid Typography**: Use `clamp()` or relative units (rem/vw) to ensure headlines scale gracefully across screen sizes.
+
+## 🖼️ SEO & OpenGraph Visuals
+1. **Dynamic Sharing Context**: Every page should have a high-quality preview image (`og:image`). The Global setting provides a branded fallback, but specific attractions and articles must prioritize their own cover images.
+2. **Aspect Ratios**: Ensure 1200x630 resolution for all OpenGraph share images. Add placeholder/fallback graphics that incorporate the village's identity.
+3. **Alt Text Enforcement**: Ensure images rendered natively via `next/image` have meaningful `alt` text mapped directly from the Strapi media library captions or alternative text fields.

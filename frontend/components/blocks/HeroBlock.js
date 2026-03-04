@@ -22,7 +22,7 @@ const HeroBlock = ({ data }) => {
           className="object-cover scale-105 animate-subtle-zoom"
         />
       )}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-white/10" />
+      <div className="absolute inset-0 bg-linear-to-b from-black/40 via-transparent to-white/10" />
 
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <h1 className="heading-hero text-white mb-6 drop-shadow-lg">{title}</h1>

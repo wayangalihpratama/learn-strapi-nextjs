@@ -33,11 +33,19 @@ Welcome to the **Digital Tourism Hub** agent documentation. This directory serve
 ### 📂 Chronological Records
 *Immutable historical records of decisions and progress.*
 - [ADRs](adrs/) - Architecture Decision Records.
+  - `ADR-001-fetching.md` - Data Fetching
+  - `ADR-002-seo-component-strategy.md` - SEO Component Architecture
+  - `ADR-003-dynamic-sitemap.md` - Dynamic Sitemap Generation
 - [Features](features/) - Detailed requirements for specific tasks.
+  - `004-seo-performance.md` - Sprint 4 Feature Document
+  - `005-multi-tenancy.md` - Sprint 5 Feature Document
 - [Stories](stories/) - User stories and technical tasks.
 - [Sprint 1 Plan](sprint-plan.md) - Foundation & Generic Core.
 - [Sprint 2 Plan](sprint-plan-2.md) - Modern Design Overhaul & Responsiveness.
-- [Research Findings](research-findings.md) - Detailed analysis from Phase 2.
+- [Sprint 3 Plan](sprint-plan-3.md) - Modular Content & Articles.
+- [Sprint 4 Plan](sprint-plan-4.md) - SEO & Performance.
+- [Research Findings v1](research-findings.md) - Detailed analysis from Phase 2 (Sprint 1/2).
+- [Research Findings v2](research-findings-v2.md) - Deep dive on SEO & Multi-Tenancy (Sprint 4/5).
 
 ---
 
@@ -52,6 +60,6 @@ Welcome to the **Digital Tourism Hub** agent documentation. This directory serve
 | 3. Architect | Winston (Architect) | [x] Complete |
 | 4. Design | Sally (UX) | [x] Complete |
 | 5. Plan | Bob (SM) | [x] Complete |
-| 6. Implement | Amelia (Dev) | [x] Complete (Sprint 3 Finished) |
+| 6. Implement | Amelia (Dev) | [x] Complete |
 | 7. Test | Murat (Tester) | [x] Complete |
-| 8. Document | Paige (Writer) | [x] Complete |
+| 8. Document | Paige (Writer) | [/] In Progress (Sprint 4) |

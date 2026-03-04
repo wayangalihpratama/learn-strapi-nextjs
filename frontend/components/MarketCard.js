@@ -24,7 +24,7 @@ export default function MarketCard({ piece }) {
 
   return (
     <div
-      className={`group flex flex-col h-full overflow-hidden rounded-[2rem] border border-mist-grey bg-white transition-all duration-500 hover:shadow-2xl hover:shadow-sky-accent/5 ${
+      className={`group flex flex-col h-full overflow-hidden rounded-4xl border border-mist-grey bg-white transition-all duration-500 hover:shadow-2xl hover:shadow-sky-accent/5 ${
         !isAvailable ? "opacity-60" : ""
       }`}
     >
@@ -41,7 +41,7 @@ export default function MarketCard({ piece }) {
         </div>
       </div>
 
-      <div className="flex flex-col flex-grow p-8">
+      <div className="flex flex-col grow p-8">
         <div className="mb-4">
           <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-sky-accent">
             {sellerName}
@@ -51,7 +51,7 @@ export default function MarketCard({ piece }) {
           </h3>
         </div>
 
-        <p className="flex-grow text-sm leading-relaxed text-foreground/50 line-clamp-3 mb-8">
+        <p className="grow text-sm leading-relaxed text-foreground/50 line-clamp-3 mb-8">
           {description}
         </p>
 

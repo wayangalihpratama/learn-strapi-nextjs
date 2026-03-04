@@ -31,7 +31,7 @@ const InfoBlock = ({ data }) => {
         </div>
 
         <div
-          className={`relative h-[400px] md:h-[600px] rounded-[2rem] overflow-hidden shadow-2xl ${showImageLeft ? "md:order-1" : ""}`}
+          className={`relative h-100 md:h-150 rounded-4xl overflow-hidden shadow-2xl ${showImageLeft ? "md:order-1" : ""}`}
         >
           {imgUrl && (
             <Image

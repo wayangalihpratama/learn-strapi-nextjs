@@ -25,3 +25,8 @@ graph TD
 ## 🌐 API Strategy
 - **Global Pre-fetch**: The `layout.tsx` fetches the `Global` single type once and caches it to provide branding across all pages.
 - **Batuan Implementation**: We use a `CONTENT_LOCALE` or `VILLAGE_ID` header (optional extension) if multi-tenancy is needed, but for now, it's one Strapi instance per village.
+
+## 🔎 SEO Architecture
+- **Component-Driven Metadata**: We use a `shared.seo` Strapi Component attached to all Content Types (Homepage, Article, Attraction, Product).
+- **Fallback Hierarchy**: The Next.js frontend resolves SEO in a cascaded manner: `Page Specific SEO -> Global SEO Fallback -> Hardcoded Defaults`.
+- **Dynamic Sitemap**: Since content is heavily dynamic, `pages/sitemap.xml.js` serves a server-rendered XML file generated on-the-fly from Strapi content endpoints.
