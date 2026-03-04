@@ -5,9 +5,11 @@
     --background: #ffffff;
     --foreground: #121212;
     --mist-grey: #f8f9fa;
+    /* Default fallback for sky-accent if not injected */
     --sky-accent: #007aff;
+    --secondary-accent: #d4af37;
     --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(0, 122, 255, 0.1);
+    --glass-border: rgba(0, 0, 0, 0.05);
   }
 
   body {
@@ -22,12 +24,20 @@
     @apply backdrop-blur-md bg-[var(--glass-bg)] border border-[var(--glass-border)] rounded-2xl shadow-sm;
   }
 
+  .glass-nav {
+    @apply backdrop-blur-md bg-white/70 border-b border-mist-grey;
+  }
+
   .btn-primary {
     @apply bg-[var(--sky-accent)] text-white px-6 py-3 rounded-full font-medium transition-all hover:opacity-90 active:scale-95 flex items-center justify-center min-h-[44px];
   }
 
   .heading-hero {
-    @apply text-4xl md:text-6xl font-serif font-bold tracking-tight leading-tight;
+    @apply text-4xl md:text-7xl font-serif font-bold tracking-tighter leading-[1.1];
+  }
+
+  .subheading {
+    @apply text-sm font-bold uppercase tracking-widest text-[var(--sky-accent)] mb-4 block;
   }
 }
 
@@ -36,4 +46,5 @@
   --color-foreground: var(--foreground);
   --color-mist-grey: var(--mist-grey);
   --color-sky-accent: var(--sky-accent);
+  --color-secondary-accent: var(--secondary-accent);
 }

@@ -9,7 +9,14 @@ export default function Layout({ children, globalData }) {
         <title>{siteName}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <div className="min-h-screen bg-background text-foreground selection:bg-sky-accent selection:text-white">
+      <div
+        className="min-h-screen bg-background text-foreground selection:bg-sky-accent selection:text-white"
+        style={{
+          "--sky-accent": globalData?.attributes?.primaryColor || "#007aff",
+          "--secondary-accent":
+            globalData?.attributes?.secondaryColor || "#D4AF37",
+        }}
+      >
         {/* Modern Sticky Header with Glassmorphism */}
         <header className="sticky top-0 z-50 w-full border-b border-mist-grey bg-white/70 backdrop-blur-md">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,6 +61,7 @@ export default function Layout({ children, globalData }) {
                 <a
                   href="/book"
                   className="rounded-full bg-sky-accent px-5 py-2 text-sm font-medium text-white transition-all hover:bg-sky-accent/90 active:scale-95 shadow-sm"
+                  style={{ backgroundColor: "var(--sky-accent)" }}
                 >
                   Explore Now
                 </a>

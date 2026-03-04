@@ -1,47 +1,55 @@
 import Link from "next/link";
 import Image from "next/image";
+import BrandedButton from "./BrandedButton";
 
 export default function AttractionCard({ attraction }) {
   const { name, slug, description, images, category, price_entry } =
     attraction.attributes;
-  const imageUrl =
-    images?.data?.[0]?.attributes?.url ||
-    "https://via.placeholder.com/600x400?text=No+Image";
+  const imageUrl = images?.data?.[0]?.attributes?.url
+    ? `${process.env.NEXT_PUBLIC_BACKEND_URL?.replace("/api", "") || "http://localhost:1337"}${images.data[0].attributes.url}`
+    : "https://via.placeholder.com/600x400?text=No+Image";
 
   return (
-    <Link href={`/attractions/${slug}`} className="group block h-full">
-      <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-mist-grey bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-        <div className="relative h-64 w-full overflow-hidden">
-          <Image
-            src={imageUrl}
-            alt={name}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-          <div className="absolute left-4 top-4 rounded-full bg-white/70 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-foreground backdrop-blur-md">
-            {category}
-          </div>
+    <div className="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-mist-grey bg-white transition-all duration-500 hover:shadow-2xl hover:shadow-sky-accent/5">
+      <div className="relative h-72 w-full overflow-hidden">
+        <Image
+          src={imageUrl}
+          alt={name}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+        <div className="absolute left-6 top-6 rounded-full bg-white/90 px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-foreground backdrop-blur-md shadow-sm">
+          {category}
         </div>
-        <div className="flex flex-grow flex-col p-6">
-          <h3 className="mb-2 text-xl font-bold group-hover:text-sky-accent transition-colors">
-            {name}
-          </h3>
-          <p className="mb-6 line-clamp-2 text-sm leading-relaxed text-foreground/60">
-            {description}
-          </p>
-          <div className="mt-auto flex items-center justify-between border-t border-mist-grey pt-4">
-            <span className="text-sm font-semibold">
+      </div>
+      <div className="flex flex-grow flex-col p-8">
+        <h3 className="mb-3 text-2xl font-bold tracking-tight text-foreground transition-colors group-hover:text-sky-accent">
+          {name}
+        </h3>
+        <p className="mb-8 line-clamp-3 text-sm leading-relaxed text-foreground/50">
+          {description}
+        </p>
+        <div className="mt-auto flex items-center justify-between gap-4 border-t border-mist-grey pt-6">
+          <div className="flex flex-col">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-foreground/30">
+              Entry Fee
+            </span>
+            <span className="text-lg font-bold">
               {price_entry
                 ? `Rp ${Number(price_entry).toLocaleString()}`
                 : "Free Entry"}
             </span>
-            <span className="flex items-center text-xs font-bold uppercase tracking-widest text-sky-accent opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1">
-              Explore &rarr;
-            </span>
           </div>
+          <BrandedButton
+            href={`/attractions/${slug}`}
+            variant="outline"
+            className="px-4"
+          >
+            Details
+          </BrandedButton>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
