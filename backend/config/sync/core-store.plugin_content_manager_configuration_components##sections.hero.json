@@ -1,0 +1,145 @@
+{
+  "key": "plugin_content_manager_configuration_components::sections.hero",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "title",
+      "defaultSortBy": "title",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "title": {
+        "edit": {
+          "label": "title",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "subtitle": {
+        "edit": {
+          "label": "subtitle",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "subtitle",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "background": {
+        "edit": {
+          "label": "background",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "background",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "primaryButton": {
+        "edit": {
+          "label": "primaryButton",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "primaryButton",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "secondaryButton": {
+        "edit": {
+          "label": "secondaryButton",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "secondaryButton",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "documentId": {
+        "edit": {},
+        "list": {
+          "label": "documentId",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "title",
+        "subtitle",
+        "background"
+      ],
+      "edit": [
+        [
+          {
+            "name": "title",
+            "size": 6
+          },
+          {
+            "name": "subtitle",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "background",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "primaryButton",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "secondaryButton",
+            "size": 12
+          }
+        ]
+      ]
+    },
+    "uid": "sections.hero",
+    "isComponent": true
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

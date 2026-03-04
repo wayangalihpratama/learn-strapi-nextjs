@@ -1,0 +1,89 @@
+{
+  "documentId": "dc8jlrk074lms5i0s3e7mcwi",
+  "name": "Public",
+  "description": "Default role given to unauthenticated user.",
+  "type": "public",
+  "locale": null,
+  "permissions": [
+    {
+      "documentId": "r0zjlgejsj7adsagc6l3g8mn",
+      "action": "api::article.article.find",
+      "locale": null
+    },
+    {
+      "documentId": "rkartmospmo2a8lmmu452mec",
+      "action": "api::article.article.findOne",
+      "locale": null
+    },
+    {
+      "documentId": "ujp5ovrgct548y1ek334qdn1",
+      "action": "api::attraction.attraction.find",
+      "locale": null
+    },
+    {
+      "documentId": "qoyekv6urunoq8nwz95o9l57",
+      "action": "api::attraction.attraction.findOne",
+      "locale": null
+    },
+    {
+      "documentId": "x0739blkueoaor3m7m0npyk0",
+      "action": "api::global.global.find",
+      "locale": null
+    },
+    {
+      "documentId": "ymi1pxxrr2ysvc6ieg21d11i",
+      "action": "api::homepage.homepage.find",
+      "locale": null
+    },
+    {
+      "documentId": "ih0fdctxnxpvb555131mablf",
+      "action": "api::market-piece.market-piece.find",
+      "locale": null
+    },
+    {
+      "documentId": "cqrraral9ypl3k2o7tkv37bi",
+      "action": "api::market-piece.market-piece.findOne",
+      "locale": null
+    },
+    {
+      "documentId": "f25pwgil60aucnkv962ewcjq",
+      "action": "plugin::users-permissions.auth.callback",
+      "locale": null
+    },
+    {
+      "documentId": "paqfw3m1k92lfhn77h2se5sk",
+      "action": "plugin::users-permissions.auth.connect",
+      "locale": null
+    },
+    {
+      "documentId": "buerrgpmjb7vw19bu5z1npjt",
+      "action": "plugin::users-permissions.auth.emailConfirmation",
+      "locale": null
+    },
+    {
+      "documentId": "ndlx958jihmqkw6a4hco55ce",
+      "action": "plugin::users-permissions.auth.forgotPassword",
+      "locale": null
+    },
+    {
+      "documentId": "fqxdd552j1q1prlvs8mfnro3",
+      "action": "plugin::users-permissions.auth.refresh",
+      "locale": null
+    },
+    {
+      "documentId": "h0qt55j568qmgj81qiput6ja",
+      "action": "plugin::users-permissions.auth.register",
+      "locale": null
+    },
+    {
+      "documentId": "ormop1ybnsmxy7lxs64t1u5m",
+      "action": "plugin::users-permissions.auth.resetPassword",
+      "locale": null
+    },
+    {
+      "documentId": "gdho56ge0b4f2zicxuzuoyvs",
+      "action": "plugin::users-permissions.auth.sendEmailConfirmation",
+      "locale": null
+    }
+  ]
+}
