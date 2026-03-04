@@ -1,11 +1,7 @@
 import Head from "next/head";
 
 export default function Layout({ children, globalData }) {
-  const {
-    primaryColor = "#1A1A1A",
-    secondaryColor = "#D4AF37",
-    siteName = "Desa Wisata",
-  } = globalData?.attributes || {};
+  const { siteName = "Digital Tourism Hub" } = globalData?.attributes || {};
 
   return (
     <>
@@ -13,86 +9,96 @@ export default function Layout({ children, globalData }) {
         <title>{siteName}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <div
-        style={{
-          "--primary-color": primaryColor,
-          "--secondary-color": secondaryColor,
-        }}
-        className="min-h-screen transition-colors duration-300"
-      >
-        <style jsx global>{`
-          :root {
-            --primary-color: ${primaryColor};
-            --secondary-color: ${secondaryColor};
-          }
-
-          .bg-primary {
-            background-color: var(--primary-color);
-          }
-
-          .text-primary {
-            color: var(--primary-color);
-          }
-
-          .bg-secondary {
-            background-color: var(--secondary-color);
-          }
-
-          .text-secondary {
-            color: var(--secondary-color);
-          }
-
-          .border-primary {
-            border-color: var(--primary-color);
-          }
-
-          .border-secondary {
-            border-color: var(--secondary-color);
-          }
-        `}</style>
-
-        <header className="bg-primary text-white p-4 shadow-lg sticky top-0 z-50">
-          <div className="container mx-auto flex justify-between items-center">
-            <h1 className="text-xl font-bold font-serif">{siteName}</h1>
-            <nav>
-              <ul className="flex space-x-4">
-                <li>
-                  <a
-                    href="/"
-                    className="hover:text-secondary transition-colors"
+      <div className="min-h-screen bg-background text-foreground selection:bg-sky-accent selection:text-white">
+        {/* Modern Sticky Header with Glassmorphism */}
+        <header className="sticky top-0 z-50 w-full border-b border-mist-grey bg-white/70 backdrop-blur-md">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex h-16 items-center justify-between">
+              <div className="flex items-center">
+                <a
+                  href="/"
+                  className="text-xl font-serif font-bold tracking-tight text-foreground transition-opacity hover:opacity-80"
+                >
+                  {siteName}
+                </a>
+              </div>
+              <nav className="hidden md:block">
+                <ul className="flex items-center space-x-8 text-sm font-medium">
+                  <li>
+                    <a
+                      href="/"
+                      className="text-foreground/70 transition-colors hover:text-sky-accent"
+                    >
+                      Home
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/attractions"
+                      className="text-foreground/70 transition-colors hover:text-sky-accent"
+                    >
+                      Attractions
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/market"
+                      className="text-foreground/70 transition-colors hover:text-sky-accent"
+                    >
+                      Market
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <div className="flex items-center space-x-4">
+                <a
+                  href="/book"
+                  className="rounded-full bg-sky-accent px-5 py-2 text-sm font-medium text-white transition-all hover:bg-sky-accent/90 active:scale-95 shadow-sm"
+                >
+                  Explore Now
+                </a>
+                {/* Mobile Menu Icon Placeholder */}
+                <button className="md:hidden text-foreground">
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
                   >
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/attractions"
-                    className="hover:text-secondary transition-colors"
-                  >
-                    Attractions
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/market"
-                    className="hover:text-secondary transition-colors"
-                  >
-                    Market
-                  </a>
-                </li>
-              </ul>
-            </nav>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16m-7 6h7"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
         </header>
 
-        <main className="container mx-auto px-4 py-8">{children}</main>
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          {children}
+        </main>
 
-        <footer className="bg-primary text-white p-8 mt-12">
-          <div className="container mx-auto text-center">
-            <p>
-              &copy; {new Date().getFullYear()} {siteName}. Powered by Digital
-              Tourism Hub.
-            </p>
+        <footer className="border-t border-mist-grey bg-white py-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+              <div className="text-lg font-serif font-bold">{siteName}</div>
+              <p className="text-sm text-foreground/50">
+                &copy; {new Date().getFullYear()} {siteName}. All rights
+                reserved.
+              </p>
+              <div className="flex space-x-6 text-sm text-foreground/50">
+                <a href="#" className="hover:text-sky-accent">
+                  Privacy
+                </a>
+                <a href="#" className="hover:text-sky-accent">
+                  Terms
+                </a>
+              </div>
+            </div>
           </div>
         </footer>
       </div>

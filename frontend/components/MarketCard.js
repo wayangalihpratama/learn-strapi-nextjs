@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function MarketCard({ piece }) {
   const {
     title,
@@ -13,7 +15,6 @@ export default function MarketCard({ piece }) {
     "https://via.placeholder.com/600x600?text=No+Image";
 
   const handleInquiry = () => {
-    // Generate WhatsApp link if it's a number, else use as is
     const link = inquiryLink?.match(/^\+?[1-9]\d{1,14}$/)
       ? `https://wa.me/${inquiryLink.replace(/\+/g, "")}?text=Hi, I am interested in ${title}`
       : inquiryLink;
@@ -22,40 +23,42 @@ export default function MarketCard({ piece }) {
 
   return (
     <div
-      className={`bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 flex flex-col h-full hover:shadow-2xl transition-all duration-300 ${!isAvailable ? "opacity-60" : ""}`}
+      className={`group flex flex-col h-full overflow-hidden rounded-3xl border border-mist-grey bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+        !isAvailable ? "opacity-60" : ""
+      }`}
     >
       <div className="relative h-64 w-full">
-        <img
+        <Image
           src={imageUrl}
           alt={title}
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-primary font-bold px-4 py-2 rounded-2xl shadow-sm text-lg">
+        <div className="absolute top-4 right-4 rounded-2xl bg-white/70 px-4 py-2 text-sm font-bold text-foreground backdrop-blur-md shadow-sm">
           Rp {Number(price).toLocaleString()}
         </div>
       </div>
 
-      <div className="p-8 flex flex-col flex-grow space-y-4">
+      <div className="flex flex-col flex-grow p-8 space-y-4">
         <div>
-          <p className="text-secondary font-bold text-xs uppercase tracking-widest mb-1">
+          <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-sky-accent">
             {sellerName}
           </p>
-          <h3 className="text-2xl font-bold text-primary font-serif">
+          <h3 className="text-xl font-bold text-foreground leading-tight">
             {title}
           </h3>
         </div>
 
-        <p className="text-gray-600 text-sm leading-relaxed flex-grow">
+        <p className="flex-grow text-sm leading-relaxed text-foreground/60 line-clamp-3">
           {description}
         </p>
 
         <button
           onClick={handleInquiry}
           disabled={!isAvailable}
-          className={`w-full py-4 rounded-full font-bold shadow-md transition-all active:scale-95 ${
-            isAvailable
-              ? "bg-primary text-white hover:bg-secondary hover:text-primary"
-              : "bg-gray-200 text-gray-400 cursor-not-allowed"
+          className={`btn-primary w-full ${
+            !isAvailable ? "cursor-not-allowed opacity-50 grayscale" : ""
           }`}
         >
           {isAvailable ? "Send Inquiry" : "Sold Out"}
