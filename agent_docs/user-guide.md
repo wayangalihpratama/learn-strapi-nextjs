@@ -25,3 +25,9 @@ Go to the **Market Pieces** collection:
 
 ## 🔄 Updating Content
 The site uses **Incremental Static Regeneration**. Changes made in Strapi will automatically appear on the website within **60 seconds**.
+
+## 🌱 Automated Seeding
+The project includes an **automatic seeding mechanism** for development:
+- Every time the Strapi server starts, it checks for existing content.
+- If data is missing (e.g., fresh database), it automatically populates the CMS with **Batuan Village** example content, including high-resolution AI-generated assets.
+- This ensures a consistent ready-to-use development environment.

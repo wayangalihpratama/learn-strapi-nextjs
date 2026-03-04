@@ -1,0 +1,105 @@
+{
+  "attractions": [
+    {
+      "name": "Pura Puseh Batuan",
+      "slug": "pura-puseh-batuan",
+      "description": "Nearly 1,000-year-old ancient temple (founded 1022 AD) featuring intricate stone carvings and traditional palm fiber (ijuk) roofs. It is a prime example of transition between early classical architecture and later temple design.",
+      "category": "Culture",
+      "location": "Batuan, Sukawati, Gianyar, Bali",
+      "opening_hours": "09:00 - 18:00",
+      "price_entry": 30000,
+      "imageFile": "pura_puseh_batuan_1772626981806.png",
+      "seo": {
+        "metaTitle": "Pura Puseh Batuan | Ancient Balinese Temple",
+        "metaDescription": "Visit the 1,000-year-old Pura Puseh Batuan, a masterpiece of ancient Balinese stone architecture."
+      }
+    }
+  ],
+  "marketPieces": [
+    {
+      "title": "Authentic Batuan Style Painting",
+      "price": 5000000,
+      "description": "Dense and meticulous detail depicting mythological scenes. This painting captures the unique 'Batuan Wash' technique developed over generations in the village of arts.",
+      "sellerName": "Batuan Artists Collective",
+      "inquiryLink": "https://wa.me/6281234567890",
+      "isAvailable": true,
+      "imageFile": "batuan_painting_1772627001135.png",
+      "seo": {
+        "metaTitle": "Authentic Batuan Style Painting - Local Art",
+        "metaDescription": "Explore high-quality Batuan style paintings, known for their intricate detail and mythological themes."
+      }
+    }
+  ],
+  "articles": [
+    {
+      "title": "The Sacred Gambuh Dance of Batuan",
+      "slug": "sacred-gambuh-dance-batuan",
+      "content": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The Gambuh dance is believed to be the oldest Balinese dance form, dating back to the 15th century. It is a national treasure that is rare and highly valued for its cultural depth, often performed during temple anniversaries at Pura Puseh Batuan."
+            }
+          ]
+        }
+      ],
+      "author": "Paige (Tech Writer)",
+      "category": "Event",
+      "imageFile": "gambuh_dance_1772627018022.png",
+      "seo": {
+        "metaTitle": "Sacred Gambuh Dance of Batuan | Balinese Heritage",
+        "metaDescription": "Learn about Gambuh, the oldest form of Balinese dance drama preserved in the village of Batuan."
+      }
+    }
+  ],
+  "global": {
+    "siteName": "Batuan Village",
+    "siteDescription": "Discover the heritage of Bali's famous Village of Arts. Home to ancient temples, intricate paintings, and the sacred Gambuh dance.",
+    "primaryColor": "#1A1A1A",
+    "secondaryColor": "#D4AF37",
+    "imageFile": "pura_puseh_batuan_1772626981806.png",
+    "seo": {
+      "metaTitle": "Batuan Village | The Village of Arts",
+      "metaDescription": "Explore the rich cultural heritage of Batuan Village, Bali."
+    }
+  },
+  "homepage": {
+    "blocks": [
+      {
+        "__component": "sections.hero",
+        "title": "Welcome to Batuan Village",
+        "subtitle": "Immerse yourself in a thousand years of Balinese art and culture.",
+        "imageFile": "pura_puseh_batuan_1772626981806.png",
+        "primaryButton": {
+          "label": "Explore Attractions",
+          "link": "/attractions",
+          "variant": "primary"
+        },
+        "secondaryButton": {
+          "label": "View Art Gallery",
+          "link": "/market",
+          "variant": "outline"
+        }
+      },
+      {
+        "__component": "sections.featured-grid",
+        "title": "Featured Attractions",
+        "type": "attractions",
+        "limit": 3
+      },
+      {
+        "__component": "sections.info-block",
+        "title": "The Village of Arts",
+        "content": "Batuan is renowned globally for its distinct style of painting, intricate stone carvings, and being the home of the sacred Gambuh dance drama.",
+        "imageFile": "batuan_painting_1772627001135.png",
+        "layout": "image-right"
+      }
+    ],
+    "seo": {
+      "metaTitle": "Home | Batuan Village Official Guide",
+      "metaDescription": "The definitive guide to visiting Batuan Village, the art capital of Bali."
+    }
+  }
+}

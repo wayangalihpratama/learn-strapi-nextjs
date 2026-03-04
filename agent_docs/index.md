@@ -39,6 +39,7 @@ Welcome to the **Digital Tourism Hub** agent documentation. This directory serve
 - [Features](features/) - Detailed requirements for specific tasks.
   - `004-seo-performance.md` - Sprint 4 Feature Document
   - `005-multi-tenancy.md` - Sprint 5 Feature Document
+  - `006-batuan-content-generation.md` - Content Seeding Feature Document
 - [Stories](stories/) - User stories and technical tasks.
 - [Sprint 1 Plan](sprint-plan.md) - Foundation & Generic Core.
 - [Sprint 2 Plan](sprint-plan-2.md) - Modern Design Overhaul & Responsiveness.
@@ -62,4 +63,4 @@ Welcome to the **Digital Tourism Hub** agent documentation. This directory serve
 | 5. Plan | Bob (SM) | [x] Complete |
 | 6. Implement | Amelia (Dev) | [x] Complete |
 | 7. Test | Murat (Tester) | [x] Complete |
-| 8. Document | Paige (Writer) | [/] In Progress (Sprint 4) |
+| 8. Document | Paige (Writer) | [x] Complete |

@@ -1,4 +1,4 @@
-"use strict";
+const { seed } = require("./api/seed/seeder");
 
 module.exports = {
   /**
@@ -17,6 +17,13 @@ module.exports = {
    * run jobs, or perform some special logic.
    */
   async bootstrap({ strapi }) {
+    // Seed Batuan Village content
+    try {
+      await seed(strapi);
+    } catch (error) {
+      console.error("❌ Seeding failed:", error);
+    }
+
     const publicRole = await strapi
       .query("plugin::users-permissions.role")
       .findOne({ where: { type: "public" } });
