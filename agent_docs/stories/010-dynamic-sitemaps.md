@@ -10,16 +10,16 @@
 As a Site Administrator, I want the platform to automatically generate an XML sitemap of all published content so that search engines can immediately discover new articles, attractions, and products without manual intervention.
 
 ## User Acceptance Criteria (UAC)
-- [ ] Navigating to `/sitemap.xml` in the browser returns a valid XML sitemap.
-- [ ] The sitemap includes the static homepage `/`.
-- [ ] The sitemap includes dynamically generated URLs for all published `Attractions` (`/attractions/[slug]`).
-- [ ] The sitemap includes dynamically generated URLs for all published `Articles` (`/news/[slug]`).
-- [ ] Draft content in Strapi does NOT appear in the sitemap.
+- [x] Navigating to `/sitemap.xml` in the browser returns a valid XML sitemap.
+- [x] The sitemap includes the static homepage `/`.
+- [x] The sitemap includes dynamically generated URLs for all published `Attractions` (`/attractions/[slug]`).
+- [x] The sitemap includes dynamically generated URLs for all published `Articles` (`/news/[slug]`).
+- [x] Draft content in Strapi does NOT appear in the sitemap.
 
 ## Technical Acceptance Criteria (TAC)
-- [ ] Implemented via `pages/sitemap.xml.js` in Next.js using `getServerSideProps`.
-- [ ] Fetching logic aggregates data from multiple Strapi endpoints.
-- [ ] The response Content-Type is set explicitly to `text/xml`.
+- [x] Implemented via `pages/sitemap.xml.js` in Next.js using `getServerSideProps`.
+- [x] Fetching logic aggregates data from multiple Strapi endpoints.
+- [x] The response Content-Type is set explicitly to `text/xml`.
 
 ## Technical Notes
 - Follow `ADR-003-dynamic-sitemap`.
@@ -27,5 +27,5 @@ As a Site Administrator, I want the platform to automatically generate an XML si
 - Make sure to prefix paths with the frontend base URL (likely `process.env.NEXT_PUBLIC_FRONTEND_URL` or derived differently if needed).
 
 ## Definition of Done
-- [ ] Code reviewed and passes linting.
-- [ ] Manual verification of `/sitemap.xml` in the browser.
+- [x] Code reviewed and passes linting.
+- [x] Manual verification of `/sitemap.xml` in the browser.

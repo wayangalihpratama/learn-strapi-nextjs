@@ -35,14 +35,14 @@ Populate the Digital Tourism Hub with authentic content from Batuan Village (The
 - **Banner**: `gambuh_dance_1772627018022.png`
 
 ## ✅ User Acceptance Criteria (UAC)
-- [ ] Strapi contains at least 1 entry for `Attraction` (Pura Puseh Batuan).
-- [ ] Strapi contains at least 1 entry for `Market Piece` (Batuan Style Painting).
-- [ ] Strapi contains at least 1 entry for `Article` (Gambuh Dance Performance).
-- [ ] All entries have required fields populated.
-- [ ] Frontend successfully fetches and displays these entries (if implemented).
+- [x] Strapi contains at least 1 entry for `Attraction` (Pura Puseh Batuan).
+- [x] Strapi contains at least 1 entry for `Market Piece` (Batuan Style Painting).
+- [x] Strapi contains at least 1 entry for `Article` (Gambuh Dance Performance).
+- [x] All entries have required fields populated.
+- [x] Frontend successfully fetches and displays these entries (if implemented).
 
 ## 🛠️ Technical Acceptance Criteria (TAC)
-- [ ] Content generation is reproducible (e.g., via seed script or manual entry documentation).
-- [ ] Images are provided via placeholder URLs or generated assets if available.
-- [ ] Slugs are correctly generated for all entries.
-- [ ] SEO components are initialized with basic metadata.
+- [x] Content generation is reproducible (e.g., via seed script or manual entry documentation).
+- [x] Images are provided via placeholder URLs or generated assets if available.
+- [x] Slugs are correctly generated for all entries.
+- [x] SEO components are initialized with basic metadata.
