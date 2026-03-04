@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "market_pieces",
+  "info": {
+    "singularName": "market-piece",
+    "pluralName": "market-pieces",
+    "displayName": "Market Piece",
+    "description": "Local products, art, and handicrafts for sale"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": ["images"]
+    },
+    "sellerName": {
+      "type": "string",
+      "required": true
+    },
+    "inquiryLink": {
+      "type": "string",
+      "description": "WhatsApp number or external link"
+    },
+    "isAvailable": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}
