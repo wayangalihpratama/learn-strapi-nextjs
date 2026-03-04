@@ -12,18 +12,13 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "heroTitle": {
-      "type": "string",
-      "required": true
-    },
-    "heroSubtitle": {
-      "type": "text"
-    },
-    "heroImage": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": ["images"]
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "sections.hero",
+        "sections.info-block",
+        "sections.featured-grid"
+      ]
     }
   }
 }

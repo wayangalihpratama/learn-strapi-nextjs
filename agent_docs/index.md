@@ -17,7 +17,13 @@ Welcome to the **Digital Tourism Hub** agent documentation. This directory serve
     - [x] Story-004: Global Modern Theme Implementation
     - [x] Story-005: Responsive Modern Hero Component
     - [x] Story-006: Responsive Component Library Update
-- [x] Verification and Documentation
+- [x] Phase 6: Implement (Modular Blocks & Articles)
+    - [x] Create Strapi Components (Hero, InfoBlock, Grid)
+    - [x] Refactor Homepage Dynamic Zone
+    - [x] Create Article Collection Type
+    - [x] Implement BlockRenderer on Frontend
+    - [x] Create News/Article Pages
+- [x] Final Verification & Documentation
 - [x] Checklist all completed sprints (Stories and Plans)
 - [x] Notify User of Completion
 - [User Guide](user-guide.md) - Documentation for end-users.
@@ -39,11 +45,13 @@ Welcome to the **Digital Tourism Hub** agent documentation. This directory serve
 
 | Phase | Agent | Status |
 |-------|-------|--------|
+| Phase | Agent | Status |
+|-------|-------|--------|
 | 1. Ideate | John (PM) | [x] Complete |
 | 2. Analyze | Mary (Analyst) | [x] Complete |
 | 3. Architect | Winston (Architect) | [x] Complete |
 | 4. Design | Sally (UX) | [x] Complete |
 | 5. Plan | Bob (SM) | [x] Complete |
-| 6. Implement | Amelia (Dev) | [x] Complete (Sprint 2 Finished) |
+| 6. Implement | Amelia (Dev) | [x] Complete (Sprint 3 Finished) |
 | 7. Test | Murat (Tester) | [x] Complete |
 | 8. Document | Paige (Writer) | [x] Complete |

@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_info_blocks",
+  "info": {
+    "displayName": "Info Block",
+    "icon": "layout",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "blocks"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "layout": {
+      "type": "enumeration",
+      "enum": ["image-left", "image-right"],
+      "default": "image-right"
+    }
+  }
+}
