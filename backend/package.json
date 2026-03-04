@@ -17,7 +17,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:ci": "jest --ci --coverage --reporters=default --reporters=jest-junit",
-    "config-sync": "strapi cs"
+    "config-sync": "config-sync export"
   },
   "dependencies": {
     "@strapi-community/strapi-provider-upload-google-cloud-storage": "^5.0.5",
