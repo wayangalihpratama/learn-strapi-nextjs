@@ -21,8 +21,8 @@ export default function Home({ globalData, homepage }) {
     );
   }
 
-  const { siteName } = globalData.data.attributes;
-  const blocks = homepage?.data?.attributes?.blocks;
+  const { siteName } = globalData.data;
+  const blocks = homepage?.data?.blocks;
 
   return (
     <main className="min-h-screen">
@@ -43,9 +43,9 @@ export default function Home({ globalData, homepage }) {
 
 export async function getStaticProps() {
   const [globalRes, homepageRes] = await Promise.all([
-    fetchFromStrapi("/global?populate[logo]=*&populate[seo][populate]=*"),
+    fetchFromStrapi("/global?populate[logo]=true&populate[seo][populate]=true"),
     fetchFromStrapi(
-      "/homepage?populate[blocks][on][sections.hero][populate]=*&populate[blocks][on][sections.info-block][populate]=*&populate[blocks][on][sections.featured-grid][populate]=*&populate[seo][populate]=*",
+      "/homepage?populate[blocks][on][sections.hero][populate]=true&populate[blocks][on][sections.info-block][populate]=true&populate[blocks][on][sections.featured-grid][populate]=true&populate[seo][populate]=true",
     ),
   ]);
 
@@ -53,7 +53,7 @@ export async function getStaticProps() {
     props: {
       globalData: globalRes,
       homepage: homepageRes,
-      seo: homepageRes?.data?.attributes?.seo || null,
+      seo: homepageRes?.data?.seo || null,
     },
     revalidate: 60,
   };

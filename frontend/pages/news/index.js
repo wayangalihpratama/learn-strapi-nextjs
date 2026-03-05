@@ -8,11 +8,11 @@ export default function NewsIndex({ globalData, articles }) {
     return <div className="p-20 text-center">Loading portal data...</div>;
   }
 
-  const { siteName } = globalData.data.attributes;
+  const siteName = globalData?.data?.siteName || "Village Portal";
 
   const getImageUrl = (image) => {
-    if (!image?.data?.attributes?.url) return null;
-    return `${process.env.NEXT_PUBLIC_BACKEND_URL}${image.data.attributes.url}`;
+    if (!image?.url) return null;
+    return `${process.env.NEXT_PUBLIC_BACKEND_URL}${image.url}`;
   };
 
   return (
@@ -28,7 +28,7 @@ export default function NewsIndex({ globalData, articles }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {articles.data.map((article) => {
             const { title, slug, banner, category, author, publishedAt } =
-              article.attributes;
+              article;
             const bannerUrl = getImageUrl(banner);
 
             return (
@@ -87,8 +87,8 @@ export default function NewsIndex({ globalData, articles }) {
 
 export async function getStaticProps() {
   const [globalRes, articlesRes] = await Promise.all([
-    fetchFromStrapi("/global?populate[logo]=*&populate[seo][populate]=*"),
-    fetchFromStrapi("/articles?populate=*&sort=publishedAt:desc"),
+    fetchFromStrapi("/global?populate[logo]=true&populate[seo][populate]=true"),
+    fetchFromStrapi("/articles?populate=true&sort=publishedAt:desc"),
   ]);
 
   return {

@@ -5,13 +5,13 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 export default function ArticleDetail({ globalData, article }) {
   if (!globalData?.data || !article?.data?.[0])
     return <div className="p-20 text-center">Story not found.</div>;
-  const { siteName } = globalData.data.attributes;
+  const { siteName } = globalData.data;
   const { title, content, banner, author, publishedAt, category } =
-    article.data[0].attributes;
+    article.data[0];
 
   const getImageUrl = (image) => {
-    if (!image?.data?.attributes?.url) return null;
-    return `${process.env.NEXT_PUBLIC_BACKEND_URL}${image.data.attributes.url}`;
+    if (!image?.url) return null;
+    return `${process.env.NEXT_PUBLIC_BACKEND_URL}${image.url}`;
   };
 
   const bannerUrl = getImageUrl(banner);
@@ -69,23 +69,24 @@ export default function ArticleDetail({ globalData, article }) {
 export async function getStaticPaths() {
   const articlesRes = await fetchFromStrapi("/articles?fields[0]=slug");
 
-  const paths = articlesRes.data.map((article) => ({
-    params: { slug: article.attributes.slug },
-  }));
+  const paths =
+    articlesRes?.data?.map((article) => ({
+      params: { slug: article.slug },
+    })) || [];
 
   return { paths, fallback: "blocking" };
 }
 
 export async function getStaticProps({ params }) {
   const [globalRes, articleRes] = await Promise.all([
-    fetchFromStrapi("/global?populate[logo]=*&populate[seo][populate]=*"),
+    fetchFromStrapi("/global?populate[logo]=true&populate[seo][populate]=true"),
     fetchFromStrapi(
-      `/articles?filters[slug][$eq]=${params.slug}&populate[banner]=*&populate[seo][populate]=*`,
+      `/articles?filters[slug][$eq]=${params.slug}&populate[banner]=true&populate[seo][populate]=true`,
     ),
   ]);
 
-  const articleSEO = articleRes?.data?.[0]?.attributes?.seo;
-  const articleTitle = articleRes?.data?.[0]?.attributes?.title;
+  const articleSEO = articleRes?.data?.[0]?.seo;
+  const articleTitle = articleRes?.data?.[0]?.title;
 
   return {
     props: {

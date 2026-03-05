@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Layout({ children, globalData, seo }) {
   const { siteName = "Digital Tourism Hub", seo: globalSeo } =
-    globalData?.attributes || {};
+    globalData?.data || {};
 
   return (
     <>
@@ -11,9 +11,8 @@ export default function Layout({ children, globalData, seo }) {
       <div
         className="min-h-screen bg-background text-foreground selection:bg-sky-accent selection:text-white"
         style={{
-          "--sky-accent": globalData?.attributes?.primaryColor || "#007aff",
-          "--secondary-accent":
-            globalData?.attributes?.secondaryColor || "#D4AF37",
+          "--sky-accent": globalData?.data?.primaryColor || "#007aff",
+          "--secondary-accent": globalData?.data?.secondaryColor || "#D4AF37",
         }}
       >
         {/* Modern Sticky Header with Glassmorphism */}

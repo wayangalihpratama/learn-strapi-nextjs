@@ -5,8 +5,8 @@ const HeroBlock = ({ data }) => {
   const { title, subtitle, background, primaryButton, secondaryButton } = data;
 
   const getImageUrl = (image) => {
-    if (!image?.data?.attributes?.url) return null;
-    return `${process.env.NEXT_PUBLIC_BACKEND_URL}${image.data.attributes.url}`;
+    if (!image?.url) return null;
+    return `${process.env.NEXT_PUBLIC_BACKEND_URL}${image.url}`;
   };
 
   const bgUrl = getImageUrl(background);

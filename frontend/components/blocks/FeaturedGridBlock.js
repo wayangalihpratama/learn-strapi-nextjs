@@ -12,7 +12,7 @@ const FeaturedGridBlock = ({ data }) => {
       const endpoint =
         type === "attractions" ? "/attractions" : "/market-pieces";
       const result = await fetchFromStrapi(
-        `${endpoint}?populate=*&pagination[limit]=${limit}`,
+        `${endpoint}?populate=true&pagination[limit]=${limit}`,
       );
       setItems(result?.data || []);
     };
@@ -31,7 +31,7 @@ const FeaturedGridBlock = ({ data }) => {
             type === "attractions" ? (
               <AttractionCard key={item.id} attraction={item} />
             ) : (
-              <MarketCard key={item.id} product={item} />
+              <MarketCard key={item.id} piece={item} />
             ),
           )}
         </div>

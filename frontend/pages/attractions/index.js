@@ -33,8 +33,8 @@ export default function Attractions({ attractions, globalData }) {
 
 export async function getStaticProps() {
   const [attractionsRes, globalRes] = await Promise.all([
-    fetchFromStrapi("/attractions?populate=*"),
-    fetchFromStrapi("/global?populate=*"),
+    fetchFromStrapi("/attractions?populate=true"),
+    fetchFromStrapi("/global?populate=true"),
   ]);
 
   return {

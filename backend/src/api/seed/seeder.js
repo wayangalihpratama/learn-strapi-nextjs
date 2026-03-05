@@ -118,6 +118,15 @@ async function seed(strapi) {
     });
   }
 
+  // Double check publication for Global in v5 (ensure it's published if it was draft)
+  const globalDoc = await strapi.documents("api::global.global").findFirst();
+  if (globalDoc && !globalDoc.publishedAt) {
+    console.log("📢 Publishing Global Settings...");
+    await strapi.documents("api::global.global").publish({
+      documentId: globalDoc.documentId,
+    });
+  }
+
   // 6. Seed Homepage
   console.log("🏠 Seeding Homepage...");
   const homepageCount = await strapi
@@ -143,6 +152,45 @@ async function seed(strapi) {
     await strapi.documents("api::homepage.homepage").create({
       data: { ...rest, blocks: processedBlocks, status: "published" },
     });
+  }
+
+  // Double check publication for Homepage in v5
+  const homepageDoc = await strapi
+    .documents("api::homepage.homepage")
+    .findFirst();
+  if (homepageDoc && !homepageDoc.publishedAt) {
+    console.log("📢 Publishing Homepage...");
+    await strapi.documents("api::homepage.homepage").publish({
+      documentId: homepageDoc.documentId,
+    });
+  }
+
+  // Double check publication for Collections in v5
+  const collections = [
+    "api::attraction.attraction",
+    "api::market-piece.market-piece",
+    "api::article.article",
+  ];
+
+  for (const uid of collections) {
+    const drafts = await strapi.documents(uid).findMany({
+      status: "draft",
+    });
+
+    for (const draft of drafts) {
+      // If no published version exists for this documentId, publish it
+      const published = await strapi.documents(uid).findOne({
+        documentId: draft.documentId,
+        status: "published",
+      });
+
+      if (!published) {
+        console.log(`📢 Publishing ${uid} (ID: ${draft.documentId})...`);
+        await strapi.documents(uid).publish({
+          documentId: draft.documentId,
+        });
+      }
+    }
   }
 
   console.log("✅ Batuan Village content seeding complete!");

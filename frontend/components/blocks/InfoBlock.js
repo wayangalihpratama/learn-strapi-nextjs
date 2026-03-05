@@ -4,8 +4,8 @@ const InfoBlock = ({ data }) => {
   const { title, content, image, layout } = data;
 
   const getImageUrl = (img) => {
-    if (!img?.data?.attributes?.url) return null;
-    return `${process.env.NEXT_PUBLIC_BACKEND_URL}${img.data.attributes.url}`;
+    if (!img?.url) return null;
+    return `${process.env.NEXT_PUBLIC_BACKEND_URL}${img.url}`;
   };
 
   const showImageLeft = layout === "image-left";

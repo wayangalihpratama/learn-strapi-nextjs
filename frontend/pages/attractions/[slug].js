@@ -12,16 +12,15 @@ export default function AttractionDetail({ attraction, globalData }) {
     location,
     opening_hours,
     price_entry,
-  } = attraction.attributes;
+  } = attraction;
   const mainImage =
-    images?.data?.[0]?.attributes?.url ||
-    "https://via.placeholder.com/1200x600?text=No+Image";
+    images?.[0]?.url || "https://via.placeholder.com/1200x600?text=No+Image";
 
   return (
     <article className="max-w-4xl mx-auto space-y-12">
       <Head>
         <title>
-          {name} | {globalData?.attributes?.siteName || "Digital Tourism Hub"}
+          {name} | {globalData?.siteName || "Digital Tourism Hub"}
         </title>
       </Head>
 
@@ -54,19 +53,19 @@ export default function AttractionDetail({ attraction, globalData }) {
             </div>
           </section>
 
-          {images?.data?.length > 1 && (
+          {images?.length > 1 && (
             <section className="space-y-6">
               <h2 className="text-3xl font-bold text-primary font-serif">
                 Gallery
               </h2>
               <div className="grid grid-cols-2 gap-4">
-                {images.data.slice(1).map((img, idx) => (
+                {images.slice(1).map((img, idx) => (
                   <div
                     key={idx}
                     className="h-64 rounded-2xl overflow-hidden shadow-md"
                   >
                     <img
-                      src={img.attributes.url}
+                      src={img.url}
                       alt={`${name} ${idx}`}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                     />
@@ -126,7 +125,7 @@ export async function getStaticPaths() {
   const res = await fetchFromStrapi("/attractions");
   const paths =
     res?.data?.map((attraction) => ({
-      params: { slug: attraction.attributes.slug },
+      params: { slug: attraction.slug },
     })) || [];
 
   return { paths, fallback: "blocking" };
@@ -135,9 +134,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const [attractionRes, globalRes] = await Promise.all([
     fetchFromStrapi(
-      `/attractions?filters[slug][$eq]=${params.slug}&populate=*`,
+      `/attractions?filters[slug][$eq]=${params.slug}&populate=true`,
     ),
-    fetchFromStrapi("/global?populate=*"),
+    fetchFromStrapi("/global?populate=true"),
   ]);
 
   return {

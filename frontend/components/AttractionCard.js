@@ -3,10 +3,9 @@ import Image from "next/image";
 import BrandedButton from "./BrandedButton";
 
 export default function AttractionCard({ attraction }) {
-  const { name, slug, description, images, category, price_entry } =
-    attraction.attributes;
-  const imageUrl = images?.data?.[0]?.attributes?.url
-    ? `${process.env.NEXT_PUBLIC_BACKEND_URL?.replace("/api", "") || "http://localhost:1337"}${images.data[0].attributes.url}`
+  const { name, slug, description, images, category, price_entry } = attraction;
+  const imageUrl = images?.[0]?.url
+    ? `${process.env.NEXT_PUBLIC_BACKEND_URL?.replace("/api", "") || "http://localhost:1337"}${images[0].url}`
     : "https://via.placeholder.com/600x400?text=No+Image";
 
   return (

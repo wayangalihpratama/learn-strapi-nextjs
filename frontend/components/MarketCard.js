@@ -10,9 +10,9 @@ export default function MarketCard({ piece }) {
     sellerName,
     inquiryLink,
     isAvailable,
-  } = piece.attributes;
-  const imageUrl = images?.data?.[0]?.attributes?.url
-    ? `${process.env.NEXT_PUBLIC_BACKEND_URL?.replace("/api", "") || "http://localhost:1337"}${images.data[0].attributes.url}`
+  } = piece;
+  const imageUrl = images?.[0]?.url
+    ? `${process.env.NEXT_PUBLIC_BACKEND_URL?.replace("/api", "") || "http://localhost:1337"}${images[0].url}`
     : "https://via.placeholder.com/600x600?text=No+Image";
 
   const handleInquiry = () => {
