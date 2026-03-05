@@ -33,8 +33,8 @@ export default function Market({ marketPieces, globalData }) {
 
 export async function getStaticProps() {
   const [marketRes, globalRes] = await Promise.all([
-    fetchFromStrapi("/market-pieces?populate=true"),
-    fetchFromStrapi("/global?populate=true"),
+    fetchFromStrapi("/market-pieces?populate=*"),
+    fetchFromStrapi("/global?populate=*"),
   ]);
 
   return {

@@ -4,14 +4,23 @@ const seedData = require("./data.json");
 
 async function uploadFile(strapi, filePath) {
   const fileName = path.basename(filePath);
-  const stats = fs.statSync(filePath);
 
+  // Deduplication in v5: check if file already exists
+  const existingFiles = await strapi.db.query("plugin::upload.file").findMany({
+    where: { name: fileName },
+  });
+
+  if (existingFiles.length > 0) {
+    return existingFiles[0];
+  }
+
+  const stats = fs.statSync(filePath);
   const [uploadedFile] = await strapi.plugins.upload.services.upload.upload({
     data: {},
     files: {
       filepath: filePath,
       originalFilename: fileName,
-      mimetype: "image/png", // Assuming PNG based on extension
+      mimetype: "image/png",
       size: stats.size,
     },
   });
@@ -19,10 +28,18 @@ async function uploadFile(strapi, filePath) {
   return uploadedFile;
 }
 
+const COMPONENT_MEDIA_MAP = {
+  "sections.hero": "background",
+  "sections.info-block": "image",
+};
+
 async function seed(strapi) {
   console.log("🚀 Starting Batuan Village content seeding...");
 
   const assetsDir = path.join(__dirname, "assets");
+
+  // 1. Re-seed everything if count is matched but we need to fix relations?
+  // For simplicity, we keep the Count checks to avoid over-running
 
   // 2. Seed Attractions
   console.log("🏗️ Seeding Attractions...");
@@ -46,8 +63,6 @@ async function seed(strapi) {
         data: { ...rest, images, status: "published" },
       });
     }
-  } else {
-    console.log("ℹ️ Attractions already exist. Skipping.");
   }
 
   // 3. Seed Market Pieces
@@ -72,8 +87,6 @@ async function seed(strapi) {
         data: { ...rest, images, status: "published" },
       });
     }
-  } else {
-    console.log("ℹ️ Market Pieces already exist. Skipping.");
   }
 
   // 4. Seed Articles
@@ -96,14 +109,12 @@ async function seed(strapi) {
         data: { ...rest, banner, status: "published" },
       });
     }
-  } else {
-    console.log("ℹ️ Articles already exist. Skipping.");
   }
 
   // 5. Seed Global Settings
   console.log("🌍 Seeding Global Settings...");
-  const globalCount = await strapi.documents("api::global.global").count();
-  if (globalCount === 0) {
+  const globalDoc = await strapi.documents("api::global.global").findFirst();
+  if (!globalDoc) {
     const { imageFile, ...rest } = seedData.global;
     let logo = null;
     if (imageFile) {
@@ -118,77 +129,88 @@ async function seed(strapi) {
     });
   }
 
-  // Double check publication for Global in v5 (ensure it's published if it was draft)
-  const globalDoc = await strapi.documents("api::global.global").findFirst();
-  if (globalDoc && !globalDoc.publishedAt) {
-    console.log("📢 Publishing Global Settings...");
-    await strapi.documents("api::global.global").publish({
-      documentId: globalDoc.documentId,
-    });
-  }
-
   // 6. Seed Homepage
   console.log("🏠 Seeding Homepage...");
-  const homepageCount = await strapi
+  const homepageDoc = await strapi
     .documents("api::homepage.homepage")
-    .count();
-  if (homepageCount === 0) {
+    .findFirst({ populate: "blocks" });
+
+  if (!homepageDoc) {
     const { blocks, ...rest } = seedData.homepage;
     const processedBlocks = [];
 
     for (const block of blocks) {
       const { imageFile, ...blockData } = block;
-      let image = null;
+      let imageId = null;
       if (imageFile) {
         const imgPath = path.join(assetsDir, imageFile);
         if (fs.existsSync(imgPath)) {
           const uploaded = await uploadFile(strapi, imgPath);
-          image = uploaded.id;
+          imageId = uploaded.id;
         }
       }
-      processedBlocks.push({ ...blockData, image });
+
+      const mediaField = COMPONENT_MEDIA_MAP[block.__component] || "image";
+      processedBlocks.push({ ...blockData, [mediaField]: imageId });
     }
 
     await strapi.documents("api::homepage.homepage").create({
       data: { ...rest, blocks: processedBlocks, status: "published" },
     });
+  } else {
+    // Check if hero background is missing
+    const heroBlock = homepageDoc.blocks?.find(
+      (b) => b.__component === "sections.hero",
+    );
+    if (heroBlock && !heroBlock.background) {
+      console.log(
+        "♻️  Fixing Homepage block relations (detected missing background)...",
+      );
+      await strapi.documents("api::homepage.homepage").delete({
+        documentId: homepageDoc.documentId,
+      });
+      // Recursively call or just let it finish and re-run on next boot
+      // But we want it fixed now, so we re-seed
+      const { blocks, ...rest } = seedData.homepage;
+      const processedBlocks = [];
+      for (const block of blocks) {
+        const { imageFile, ...blockData } = block;
+        let imageId = null;
+        if (imageFile) {
+          const imgPath = path.join(assetsDir, imageFile);
+          if (fs.existsSync(imgPath)) {
+            const uploaded = await uploadFile(strapi, imgPath);
+            imageId = uploaded.id;
+          }
+        }
+        const mediaField = COMPONENT_MEDIA_MAP[block.__component] || "image";
+        processedBlocks.push({ ...blockData, [mediaField]: imageId });
+      }
+      await strapi.documents("api::homepage.homepage").create({
+        data: { ...rest, blocks: processedBlocks, status: "published" },
+      });
+    }
   }
 
-  // Double check publication for Homepage in v5
-  const homepageDoc = await strapi
-    .documents("api::homepage.homepage")
-    .findFirst();
-  if (homepageDoc && !homepageDoc.publishedAt) {
-    console.log("📢 Publishing Homepage...");
-    await strapi.documents("api::homepage.homepage").publish({
-      documentId: homepageDoc.documentId,
-    });
-  }
-
-  // Double check publication for Collections in v5
-  const collections = [
+  // Standard Publication Logic (Global, Homepage, Collections)
+  const docsToPublish = [
+    "api::global.global",
+    "api::homepage.homepage",
     "api::attraction.attraction",
     "api::market-piece.market-piece",
     "api::article.article",
   ];
 
-  for (const uid of collections) {
-    const drafts = await strapi.documents(uid).findMany({
-      status: "draft",
-    });
-
+  for (const uid of docsToPublish) {
+    const drafts = await strapi.documents(uid).findMany({ status: "draft" });
     for (const draft of drafts) {
-      // If no published version exists for this documentId, publish it
       const published = await strapi.documents(uid).findOne({
         documentId: draft.documentId,
         status: "published",
       });
-
       if (!published) {
         console.log(`📢 Publishing ${uid} (ID: ${draft.documentId})...`);
-        await strapi.documents(uid).publish({
-          documentId: draft.documentId,
-        });
+        await strapi.documents(uid).publish({ documentId: draft.documentId });
       }
     }
   }

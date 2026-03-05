@@ -87,8 +87,8 @@ export default function NewsIndex({ globalData, articles }) {
 
 export async function getStaticProps() {
   const [globalRes, articlesRes] = await Promise.all([
-    fetchFromStrapi("/global?populate[logo]=true&populate[seo][populate]=true"),
-    fetchFromStrapi("/articles?populate=true&sort=publishedAt:desc"),
+    fetchFromStrapi("/global?populate[logo]=*&populate[seo][populate]=*"),
+    fetchFromStrapi("/articles?populate=*&sort=publishedAt:desc"),
   ]);
 
   return {

@@ -79,9 +79,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const [globalRes, articleRes] = await Promise.all([
-    fetchFromStrapi("/global?populate[logo]=true&populate[seo][populate]=true"),
+    fetchFromStrapi("/global?populate[logo]=*&populate[seo][populate]=*"),
     fetchFromStrapi(
-      `/articles?filters[slug][$eq]=${params.slug}&populate[banner]=true&populate[seo][populate]=true`,
+      `/articles?filters[slug][$eq]=${params.slug}&populate[banner]=*&populate[seo][populate]=*`,
     ),
   ]);
 

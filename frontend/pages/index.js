@@ -45,7 +45,7 @@ export async function getStaticProps() {
   const [globalRes, homepageRes] = await Promise.all([
     fetchFromStrapi("/global?populate[logo]=true&populate[seo][populate]=true"),
     fetchFromStrapi(
-      "/homepage?populate[blocks][on][sections.hero][populate]=true&populate[blocks][on][sections.info-block][populate]=true&populate[blocks][on][sections.featured-grid][populate]=true&populate[seo][populate]=true",
+      "/homepage?populate[blocks][on][sections.hero][populate]=*&populate[blocks][on][sections.info-block][populate]=*&populate[blocks][on][sections.featured-grid][populate]=*&populate[seo][populate]=*",
     ),
   ]);
 

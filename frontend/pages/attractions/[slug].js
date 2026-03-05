@@ -134,9 +134,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const [attractionRes, globalRes] = await Promise.all([
     fetchFromStrapi(
-      `/attractions?filters[slug][$eq]=${params.slug}&populate=true`,
+      `/attractions?filters[slug][$eq]=${params.slug}&populate=*`,
     ),
-    fetchFromStrapi("/global?populate=true"),
+    fetchFromStrapi("/global?populate=*"),
   ]);
 
   return {
